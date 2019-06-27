@@ -4,6 +4,7 @@ const http = require('http')
 const debug = require('debug')
 const chalk = require('chalk')
 const filesize = require('filesize')
+const httpContext = require('express-http-context');
 const makeId = require('./id')
 
 const sp = ' '
@@ -21,6 +22,7 @@ function Volleyball(config = {}) {
 			id: makeId(),
 			time: process.hrtime(),
 		}
+    httpContext.set('volleyball:id', cycle.id)
 
 		logReq(req, cycle)
 
